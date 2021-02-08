@@ -102,7 +102,6 @@ def index():
         bs = BeautifulSoup(page_komens.content, "html.parser")
 
         msgs = get_msgs(get_idmsg(page_komens))
-        msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
 
         return render_template("index.html", msgs=msgs)
     else:
