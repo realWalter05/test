@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6534463a-4451-4788-9602-8f4f51ce6c3d" name="Default Changelist" comment="Initial message">
-      <change afterPath="$PROJECT_DIR$/wsgi.py" afterDir="false" />
+    <list default="true" id="6534463a-4451-4788-9602-8f4f51ce6c3d" name="Default Changelist" comment="withwsgi">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612813284463</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="withwsgi">
+      <created>1612813492846</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1612813492846</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +188,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial message" />
+    <MESSAGE value="withwsgi" />
+    <option name="LAST_COMMIT_MESSAGE" value="withwsgi" />
   </component>
 </project>
