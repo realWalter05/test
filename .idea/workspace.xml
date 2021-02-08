@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6534463a-4451-4788-9602-8f4f51ce6c3d" name="Default Changelist" comment="everything">
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/LICENSE.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/REQUESTED" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/entry_points.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.3.dist-info/top_level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/LICENSE.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/REQUESTED" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/entry_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/Jinja2-2.11.2.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jinja2/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +187,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612822556008</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="everything">
+      <created>1612822874546</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1612822874546</updated>
+    </task>
+    <task id="LOCAL-00016" summary="everything">
+      <created>1612822879817</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1612822879817</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
