@@ -100,6 +100,10 @@ def index():
         page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
                                    payload)
         bs = BeautifulSoup(page_komens.content, "html.parser")
-        return "<h1>Welcome to our server !!</h1>" + bs.get_text()
+
+        msgs = get_msgs(get_idmsg(page_komens))
+        msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+
+        return render_template("index.html", msgs=msgs)
     else:
         return render_template("index.html")
