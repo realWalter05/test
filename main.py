@@ -1,5 +1,7 @@
 from flask import Flask
 import requests
+from bs4 import BeautifulSoup
+
 
 app = Flask(__name__)
 s = requests.session()
@@ -24,4 +26,5 @@ def index():
     }
     page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
                                payload)
-    return "<h1>Welcome to our server !!</h1>"
+    bs = BeautifulSoup(page_komens.content, 'html.parser')
+    return "<h1>Welcome to our server !!</h1>" + bs.getText()
