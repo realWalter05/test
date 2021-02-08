@@ -101,6 +101,4 @@ def index():
 
     msgs = get_msgs(get_idmsg(page_komens))
 
-    msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
-
     return "<h1>Welcome to our server !!</h1>" + str(msgs)
