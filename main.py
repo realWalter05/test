@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, render_template
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -88,17 +88,18 @@ def group_msgs(msgs):
     return big_list
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    payload = {
-        "username": "zikav29z",
-        "password": "1c2zkH51",
-        "returnUrl": "/dashboard",
-        "login": "",
-    }
-    page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
-                               payload)
-
-    msgs = get_msgs(get_idmsg(page_komens))
-
-    return "<h1>Welcome to our server !!</h1>" + str(msgs)
+    if request.method == "POST":
+        payload = {
+            "username": "zikav29z",
+            "password": "1c2zkH51",
+            "returnUrl": "/dashboard",
+            "login": "",
+        }
+        page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
+                                   payload)
+        bs = BeautifulSoup(page_komens.content, "html.parser")
+        return "<h1>Welcome to our server !!</h1>" + bs.get_text()
+    else:
+        return render_template("index.html")
