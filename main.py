@@ -24,8 +24,12 @@ def get_idmsg(url):
     msgs_table = bs.findAll(attrs="needsclick link message_list_table_item message_list_table_read_ano sender_U "
                                   "sender_U_hover message_list_table_repressed_ne")
     ids_msg = []
+    i = 0
     for msg in msgs_table:
+        if i == 4:
+            break
         ids_msg.append(msg['data-idmsg'])
+        i += 1
 
     return ids_msg
 
