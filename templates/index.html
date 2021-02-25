@@ -5,20 +5,27 @@
         <meta charset="UTF-8">
     </head>
     <body>
-       {% extends 'base.html' %}
-
-{% block body %}
-{% if msgs %}
-    {% autoescape false %}
-        <script>SetLocalStorage({{ msgs }}); window.location.replace("http://127.0.0.1:5000/");</script>
-    {% endautoescape %}
-{% endif %}
-<article class="msgs">
-</article>
-<script>
-    CheckLocalStorage();
-</script>
-{% endblock %}
-
+        <form action="/" method="POST"  >
+            <input type="submit" value="Go"/>
+        </form>
+        <article>
+                {% autoescape true %}
+                {% for key in msgs%}
+                    <ul class="key">
+                        <h2>{{ key[0]["Jmeno"] }}</h2>
+                        {% for msg in key %}
+                        <li id="msg" class="msg" onclick="OpenMsg({{ msg }});">
+                            <p>
+                                {% autoescape false %}
+                                <b>{{ msg["Cas"] }}</b><br/><br/>
+                                {{ msg["MessageText"] }}
+                                {% endautoescape %}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endautoescape %}
+        </article>
     </body>
 </html>
