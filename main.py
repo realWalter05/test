@@ -1,9 +1,8 @@
-from flask import Flask, request, render_template
 import requests
 from bs4 import BeautifulSoup
 import json
+from flask import Flask, render_template, request
 from itertools import groupby
-
 
 app = Flask(__name__)
 s = requests.session()
@@ -24,12 +23,8 @@ def get_idmsg(url):
     msgs_table = bs.findAll(attrs="needsclick link message_list_table_item message_list_table_read_ano sender_U "
                                   "sender_U_hover message_list_table_repressed_ne")
     ids_msg = []
-    i = 0
     for msg in msgs_table:
-        if i == 4:
-            break
         ids_msg.append(msg['data-idmsg'])
-        i += 1
 
     return ids_msg
 
@@ -66,12 +61,14 @@ def get_msgs(ids_msg):
         name = BeautifulSoup(response["Jmeno"], 'html.parser')
         time = BeautifulSoup(response["Cas"], 'html.parser')
         files = response["Files"]
+        idmsg = response["Id"]
 
         msg_dict = {
             "MessageText": "" + str(msg),
             "Jmeno": "" + name.get_text(),
             "Cas": "" + time.get_text(),
-            "Files": files
+            "Files": files,
+            "idmsg": idmsg
         }
         msgs.append(msg_dict)
     return msgs
@@ -83,7 +80,7 @@ def group_msgs(msgs):
     big_list = []
     for key, value in msgs:
         if key == "Mgr. Andrea Slabá" or key == "Mgr. Jan Koutník" or key == "Mgr. Jaroslav Chval" \
-                or key == "Mgr. Lucie Zemanová":
+                or key == "Mgr. Lucie Zemanová" or key == "Mgr. Aneta Marková" or key == "Mgr. Iva Ťupová":
             continue
         lis = []
         for k in value:
@@ -92,21 +89,50 @@ def group_msgs(msgs):
     return big_list
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == "POST":
-        payload = {
-            "username": "zikav29z",
-            "password": "1c2zkH51",
-            "returnUrl": "/dashboard",
-            "login": "",
-        }
-        page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
-                                   payload)
-        bs = BeautifulSoup(page_komens.content, "html.parser")
+def main():
+    @app.route('/', methods=["GET", "POST"])
+    def index():
+        return render_template('index.html')
 
-        msgs = get_msgs(get_idmsg(page_komens))
+    @app.route('/get_msgs/', methods=["GET", "POST"])
+    def get_new_msgs():
+        old_idmsgs = request.args.get('msgs')
 
-        return render_template("index.html", msgs=msgs)
-    else:
-        return render_template("index.html")
+        # We're here from index to get a new msgs
+        if old_idmsgs:
+            print("there are data")
+            payload = {
+                "username": "zikav29z",
+                "password": "1c2zkH51",
+                "returnUrl": "/dashboard",
+                "login": "",
+            }
+            page_komens = send_payload("https://zsebenese.bakalari.cz/Login",
+                                       "https://zsebenese.bakalari.cz/next/komens.aspx?s=mesic",
+                                       payload)
+
+            idmsgs = get_idmsg(page_komens)
+            if idmsgs == old_idmsgs:
+                return render_template('index.html', status="Žádné nové zprávy")
+            else:
+                msgs = get_msgs(idmsgs)
+                msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+
+                return render_template('index.html', msgs=msgs)
+        # We're here from index to setup first msgs
+        else:
+            print("There are no msgs yet")
+            payload = {
+                "username": "zikav29z",
+                "password": "1c2zkH51",
+                "returnUrl": "/dashboard",
+                "login": "",
+            }
+            page_komens = send_payload("https://zsebenese.bakalari.cz/Login",
+                                       "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
+                                       payload)
+
+            msgs = get_msgs(get_idmsg(page_komens))
+            msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+
+            return render_template('index.html', msgs=msgs)
