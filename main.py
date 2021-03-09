@@ -112,7 +112,7 @@ def index():
         "login": "",
     }
     print("pre login")
-    page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=tyden",
+    page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=den",
                                payload)
     print("logging works")
     bs = BeautifulSoup(page_komens.content, "html.parser")
