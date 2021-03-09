@@ -105,21 +105,48 @@ def group_msgs(msgs):
 
 @app.route('/')
 def index():
-    payload = {
-        "username": "zikav29z",
-        "password": "1c2zkH51",
-        "returnUrl": "/dashboard",
-        "login": "",
-    }
-    print("pre login")
-    page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=den",
-                               payload)
-    print("logging works")
-    bs = BeautifulSoup(page_komens.content, "html.parser")
-    print("bs works")
-    msgs = get_msgs(get_idmsg(page_komens))
-    print("getting msgs works")
+    return render_template('index.html')
 
-    msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+@app.route('/get_msgs/', methods=["GET", "POST"])
+def get_new_msgs():
+    old_idmsgs = request.args.get('msgs')
 
-    return render_template("index.html", msgs=msgs)
+    # We're here from index to get a new msgs
+    if old_idmsgs:
+        print("there are data")
+        payload = {
+            "username": "zikav29z",
+            "password": "1c2zkH51",
+            "returnUrl": "/dashboard",
+            "login": "",
+        }
+        page_komens = send_payload("https://zsebenese.bakalari.cz/Login",
+                                   "https://zsebenese.bakalari.cz/next/komens.aspx?s=den",
+                                   payload)
+
+        idmsgs = get_idmsg(page_komens)
+        if idmsgs == old_idmsgs:
+            return render_template('index.html', status="Žádné nové zprávy")
+        else:
+            msgs = get_msgs(idmsgs)
+            msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+
+            return render_template('index.html', msgs=msgs)
+    # We're here from index to setup first msgs
+    else:
+        print("There are no msgs yet")
+        payload = {
+            "username": "zikav29z",
+            "password": "1c2zkH51",
+            "returnUrl": "/dashboard",
+            "login": "",
+        }
+        page_komens = send_payload("https://zsebenese.bakalari.cz/Login",
+                                   "https://zsebenese.bakalari.cz/next/komens.aspx?s=den",
+                                   payload)
+
+        msgs = get_msgs(get_idmsg(page_komens))
+        msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
+
+        return render_template('index.html', msgs=msgs)
+
