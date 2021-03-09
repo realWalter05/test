@@ -216,6 +216,7 @@ function UpdateMsgs() {
     reload_icon.classList.add("rotate");
 
     var form = document.createElement("form");
+    console.log("going to relocate shiiiiit");
  // form.setAttribute("action", "http://127.0.0.1:5000/get_msgs/");
     form.setAttribute("action", "https://banakmis.herokuapp.com/get_msgs/");
     form.setAttribute("method", "POST");
