@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/static/main.js"></script>
+        <title>Banakmis</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ url_for('static', filename='img/banakmis_only_logo.png')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='banakmis_style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='msg.css')}}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    </head>
+    <body class="body">
+        <header class="header">
+            <ul>
+                <li><a href="http://127.0.0.1:5000/"><img class="banakmis_logo" src="{{ url_for('static', filename='img/banakmis_logo.png')}}" alt="Banakmis logo"/></a></li>
+                <li class="reload_li" onclick="UpdateMsgs();">
+                    <img class="reload_icon" src="{{ url_for('static', filename='img/reload.png')}}" alt="Reload"/>
+                    {% if status %}
+                      <i>{{ status }}</i>
+                    {% endif %}
+                </li>
+            </ul>
+        </header>
+        {% block body %}{% endblock %}
+    </body>
+</html>

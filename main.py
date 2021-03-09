@@ -1,9 +1,8 @@
-from flask import Flask, request, render_template
 import requests
 from bs4 import BeautifulSoup
 import json
+from flask import Flask, render_template, request
 from itertools import groupby
-
 
 app = Flask(__name__)
 s = requests.session()
@@ -21,8 +20,7 @@ def send_payload(from_url, to_url, data_payload):
 def get_idmsg(url):
     bs = BeautifulSoup(url.content, 'html.parser')
 
-    msgs_table = bs.findAll(attrs="needsclick link message_list_table_item message_list_table_read_ano sender_U "
-                                  "sender_U_hover message_list_table_repressed_ne")
+    msgs_table = bs.findAll(attrs="message_list_table_item")
     ids_msg = []
     for msg in msgs_table:
         ids_msg.append(msg['data-idmsg'])
@@ -62,12 +60,14 @@ def get_msgs(ids_msg):
         name = BeautifulSoup(response["Jmeno"], 'html.parser')
         time = BeautifulSoup(response["Cas"], 'html.parser')
         files = response["Files"]
+        idmsg = response["Id"]
 
         msg_dict = {
             "MessageText": "" + str(msg),
             "Jmeno": "" + name.get_text(),
             "Cas": "" + time.get_text(),
-            "Files": files
+            "Files": files,
+            "idmsg": idmsg
         }
         msgs.append(msg_dict)
     return msgs
@@ -76,32 +76,50 @@ def get_msgs(ids_msg):
 def group_msgs(msgs):
     msgs = groupby(msgs, key=lambda k: k['Jmeno'])
 
+    sachova_index = 0
+    headmastership_index = 0
     big_list = []
+    index = 0
     for key, value in msgs:
-        if key == "Mgr. Andrea Slabá" or key == "Mgr. Jan Koutník" or key == "Mgr. Jaroslav Chval" or key == "Mgr. Lucie Zemanová":
-            continue
+        print("Index: " + str(index))
+        print("Key: " + key)
+        if key == "Mgr. Andrea Slabá" or key == "Mgr. Jan Koutník" or key == "Mgr. Jaroslav Chval" \
+                or key == "Mgr. Lucie Zemanová" or key == "Mgr. Aneta Marková" or key == "Mgr. Iva Ťupová" \
+                or key == "Mgr. Josef Beniska" or key == "system message":
+           continue
+        if key == "Mgr. Jaroslava Šáchová":
+            sachova_index = index
+        if key == "headmastership":
+            headmastership_index = index
         lis = []
         for k in value:
             lis.append(k)
         big_list.append(lis)
+        index += 1
+    # Merging Radr a Sachova
+    big_list[sachova_index].extend(big_list[headmastership_index])
+    big_list.remove(big_list[headmastership_index])
+
     return big_list
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        payload = {
-            "username": "zikav29z",
-            "password": "1c2zkH51",
-            "returnUrl": "/dashboard",
-            "login": "",
-        }
-        page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=rok",
-                                   payload)
-        bs = BeautifulSoup(page_komens.content, "html.parser")
+    payload = {
+        "username": "zikav29z",
+        "password": "1c2zkH51",
+        "returnUrl": "/dashboard",
+        "login": "",
+    }
+    print("pre login")
+    page_komens = send_payload("https://zsebenese.bakalari.cz/Login", "https://zsebenese.bakalari.cz/next/komens.aspx?s=tyden",
+                               payload)
+    print("logging works")
+    bs = BeautifulSoup(page_komens.content, "html.parser")
+    print("bs works")
+    msgs = get_msgs(get_idmsg(page_komens))
+    print("getting msgs works")
 
-        msgs = get_msgs(get_idmsg(page_komens))
+    msgs = group_msgs(sorted(msgs, key=lambda k: k['Jmeno']))
 
-        return render_template("index.html", msgs=msgs)
-    else:
-        return render_template("index.html")
+    return render_template("index.html", msgs=msgs)

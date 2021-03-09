@@ -1,31 +1,5 @@
-<html>
-    <head>
-        <title>Hello</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <form action="/" method="POST"  >
-            <input type="submit" value="Go"/>
-        </form>
-        <article>
-                {% autoescape true %}
-                {% for key in msgs%}
-                    <ul class="key">
-                        <h2>{{ key[0]["Jmeno"] }}</h2>
-                        {% for msg in key %}
-                        <li id="msg" class="msg" onclick="OpenMsg({{ msg }});">
-                            <p>
-                                {% autoescape false %}
-                                <b>{{ msg["Cas"] }}</b><br/><br/>
-                                {{ msg["MessageText"] }}
-                                {% endautoescape %}
-                            </p>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                {% endfor %}
-            {% endautoescape %}
-        </article>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block body %}
+    {{ msgs }}
+{% endblock %}

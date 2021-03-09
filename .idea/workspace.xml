@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6534463a-4451-4788-9602-8f4f51ce6c3d" name="Default Changelist" comment="for break short">
+      <change afterPath="$PROJECT_DIR$/static/banakmis_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/arrow_top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/banakmis_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/banakmis_only_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/done.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/link.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/no_time.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/reload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/working_on.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/msg.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +40,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Walter\PycharmProjects\test\templates" />
+      <recent name="C:\Users\Walter\PycharmProjects\test" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.wsgi">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -269,7 +289,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612902963229</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="for break short">
+      <created>1614218288330</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1614218288330</updated>
+    </task>
+    <task id="LOCAL-00028" summary="for break short">
+      <created>1614218429721</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1614218429721</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
