@@ -218,7 +218,7 @@ function UpdateMsgs() {
     var form = document.createElement("form");
     console.log("going to relocate shiiiiit");
  // form.setAttribute("action", "http://127.0.0.1:5000/get_msgs/");
-    form.setAttribute("action", "https://dunnotest.com/get_msgs/");
+    form.setAttribute("action", "https://dunnotest.herokuapp.com/get_msgs/");
     form.setAttribute("method", "POST");
 
     var input = document.createElement("input");
